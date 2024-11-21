@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Quality Prediction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            flex: 0 0 150px; /* Fixed width for labels */
+            margin-right: 5px; /* Small space between label and input */
+            text-align: right;
+        }
+        .form-group input {
+            width: 300px; /* Medium box size */
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+
+        .submit-button {
+            text-align: center; /* Center-align the button */
+        }
+
+        .submit-button button {
+            width: 300px; /* Medium button size */
+        }
+
+        .prediction-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333; /* Neutral text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Wine Quality Prediction</h1>
+        <form action="/predict" method="POST" class="mt-4">
+            <div class="row g-2">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="fixed_acidity">Fixed Acidity:</label>
+                        <input type="number" step="0.01" class="form-control" id="fixed_acidity" name="fixed_acidity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="volatile_acidity">Volatile Acidity:</label>
+                        <input type="number" step="0.01" class="form-control" id="volatile_acidity" name="volatile_acidity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="citric_acid">Citric Acid:</label>
+                        <input type="number" step="0.01" class="form-control" id="citric_acid" name="citric_acid" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="residual_sugar">Residual Sugar:</label>
+                        <input type="number" step="0.01" class="form-control" id="residual_sugar" name="residual_sugar" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="chlorides">Chlorides:</label>
+                        <input type="number" step="0.01" class="form-control" id="chlorides" name="chlorides" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="free_sulfur_dioxide">Free Sulfur Dioxide:</label>
+                        <input type="number" step="0.01" class="form-control" id="free_sulfur_dioxide" name="free_sulfur_dioxide" required>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="total_sulfur_dioxide">Total Sulfur Dioxide:</label>
+                        <input type="number" step="0.01" class="form-control" id="total_sulfur_dioxide" name="total_sulfur_dioxide" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="density">Density:</label>
+                        <input type="number" step="0.01" class="form-control" id="density" name="density" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pH">pH:</label>
+                        <input type="number" step="0.01" class="form-control" id="pH" name="pH" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sulphates">Sulphates:</label>
+                        <input type="number" step="0.01" class="form-control" id="sulphates" name="sulphates" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alcohol">Alcohol:</label>
+                        <input type="number" step="0.01" class="form-control" id="alcohol" name="alcohol" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="submit-button mt-4">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </form>
+
+        {% if wine_quality %}
+        <div class="prediction-text">
+            <strong>Wine Quality:</strong> {{ wine_quality }}
+        </div>
+        {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
